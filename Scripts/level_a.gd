@@ -1,7 +1,7 @@
 extends Node2D
 
-var Player = preload("res://player.tscn")
-var Camera = preload("res://camera.tscn")
+var Player = preload("res://Scenes/player.tscn")
+var Camera = preload("res://Scenes/camera.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

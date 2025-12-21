@@ -6,6 +6,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hqtel"]
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
+platform_on_leave = 1
+platform_floor_layers = 0
 script = ExtResource("1_cvnsp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

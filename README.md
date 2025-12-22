@@ -6,7 +6,7 @@ The theme is "Complete randomness!"
 
 
 Credits:
-AVG, Ignosuke, and NemmytotheA as programmers
-Thinking Frog Studios and MasterSujo as the artists
+AVG, Ignosuke, MasterSujo, and NemmytotheA as programmers
+Thinking Frog Studios as the artist
 
 We will be making a roguelite where character abilities, enemies, and map layouts will be randomized.

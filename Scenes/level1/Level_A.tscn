@@ -4,3 +4,6 @@
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_0p5dj")
+
+[node name="SpawnPosition" type="Marker2D" parent="."]
+position = Vector2(89, 41)

@@ -42,7 +42,6 @@ func get_spawn_position():
 	var spawn_location:Vector2 = Vector2(rng.randi_range(-300, 300), rng.randi_range(300, -300))
 	if abs(spawn_location - GM.player.global_position) > Vector2(100,100):
 		return spawn_location
-	else:get_spawn_position()
 
 func get_enemy_list():##gives a count of files in directory, next rng from 0-size
 	var dir = DirAccess.open(enemy_directory)

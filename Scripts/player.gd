@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
-@export var PlayerSpeed = 200
+@export var PlayerSpeed:float = 200.0
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

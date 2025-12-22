@@ -7,3 +7,13 @@ script = ExtResource("1_0p5dj")
 
 [node name="SpawnPosition" type="Marker2D" parent="."]
 position = Vector2(89, 41)
+
+[node name="EnemyList" type="Node2D" parent="."]
+
+[node name="Timers" type="Node2D" parent="."]
+
+[node name="EnemySpawner" type="Timer" parent="Timers"]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="Timers/EnemySpawner" to="." method="_on_enemy_spawner_timeout"]

@@ -1,9 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://ckudr8chj1kgo"]
+[gd_scene load_steps=5 format=3 uid="uid://ckudr8chj1kgo"]
 
 [ext_resource type="Script" uid="uid://dc2tyapas16kr" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="2_6t5aa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hqtel"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 platform_on_leave = 1
@@ -16,3 +18,14 @@ shape = SubResource("RectangleShape2D_hqtel")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.15698828, 0.15698828)
 texture = ExtResource("2_6t5aa")
+
+[node name="Body" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
+shape = SubResource("RectangleShape2D_cvnsp")
+
+[node name="Weapon" type="Node2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="Weapon"]

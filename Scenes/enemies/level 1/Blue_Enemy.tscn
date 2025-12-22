@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://wwgshqeenkyn"]
+[gd_scene load_steps=14 format=3 uid="uid://wwgshqeenkyn"]
 
 [ext_resource type="Script" uid="uid://48nxsogxpi1f" path="res://animated_sprite_2d.gd" id="1_crm1t"]
 [ext_resource type="Texture2D" uid="uid://qnwi0t8kc4hi" path="res://art/blueenemy.png" id="2_tgl8x"]
@@ -70,6 +70,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_crm1t"]
+size = Vector2(14, 24)
+
 [node name="BlueEnemy" type="CharacterBody2D" groups=["Enemy"]]
 platform_on_leave = 1
 platform_floor_layers = 0
@@ -84,3 +87,12 @@ one_way_collision_margin = 8.5
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_pff8j")
 animation = &"Walk"
+autoplay = "Walk"
+
+[node name="Body" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_crm1t")

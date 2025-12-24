@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://wwgshqeenkyn"]
+[gd_scene load_steps=15 format=3 uid="uid://wwgshqeenkyn"]
 
 [ext_resource type="Script" uid="uid://48nxsogxpi1f" path="res://animated_sprite_2d.gd" id="1_crm1t"]
 [ext_resource type="Texture2D" uid="uid://qnwi0t8kc4hi" path="res://art/blueenemy.png" id="2_tgl8x"]
@@ -73,6 +73,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_crm1t"]
 size = Vector2(14, 24)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tgl8x"]
+size = Vector2(6, 12)
+
 [node name="BlueEnemy" type="CharacterBody2D" groups=["Enemy"]]
 platform_on_leave = 1
 platform_floor_layers = 0
@@ -96,3 +99,23 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_crm1t")
+
+[node name="Timers" type="Node2D" parent="."]
+
+[node name="HurtFlasher" type="Timer" parent="Timers"]
+wait_time = 0.25
+one_shot = true
+
+[node name="AttackCD" type="Timer" parent="Timers"]
+one_shot = true
+
+[node name="AttackBox" type="Node2D" parent="."]
+
+[node name="PlayerHurt" type="Area2D" parent="AttackBox"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackBox/PlayerHurt"]
+shape = SubResource("RectangleShape2D_tgl8x")
+
+[connection signal="timeout" from="Timers/HurtFlasher" to="." method="_on_hurt_flasher_timeout"]

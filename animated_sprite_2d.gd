@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends StaticBody2D
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 @onready var attack_box: Node2D = $AttackBox
@@ -6,42 +6,34 @@ extends CharacterBody2D
 var attack_damage:int = 1
 @onready var attack_cd: Timer = $Timers/AttackCD
 
-var health = 100
+var self_name:String
+var health = 0
+var max_health:int = 100
 var speed:float = 35.0
 
 @onready var hurt_flasher: Timer = $Timers/HurtFlasher
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	health = max_health
 	add_to_group("Enemy")
 	
 func _physics_process(delta: float) -> void:
 	attacking()
 	facing_dir()
 	mover(delta)
-	move_and_slide()  # Move character with collision detection
-
+	
 	
 func mover(delta):
 	global_position.x = move_toward(global_position.x, GM.player.global_position.x, speed * delta)
 	global_position.y = move_toward(global_position.y, GM.player.global_position.y, speed * delta)
 
 func facing_dir():##controls attack box facing and sprite facing
-	if global_position.y + 16 < GM.player.global_position.y:
-		attack_box.position.x = 0
-		attack_box.position.y = 12
-	elif global_position.y - 16 > GM.player.global_position.y:
-		attack_box.position.x = 0
-		attack_box.position.y = -12
-	elif global_position.x < GM.player.global_position.x:
+	attack_box.look_at(GM.player.global_position)
+	if global_position.x < GM.player.global_position.x:
 		sprite.flip_h = true
-		attack_box.position.x = 10
-		attack_box.position.y = 0
 	elif global_position.x > GM.player.global_position.x:
 		sprite.flip_h = false
-		attack_box.position.x = -10
-		attack_box.position.y = 0
-		
 
 func attacking():
 	if attack_cd.is_stopped():
@@ -56,7 +48,11 @@ func damaged(damage):
 	hurt_flasher.start()
 	health -= damage
 	if health <= 0:
-		queue_free()
-
+		visible = false
+		sprite.self_modulate = Color.WHITE
+		GM.enemy_spawn_pool.append(self)
+		self.reparent(get_tree().current_scene.idle_enemies)
+		process_mode = Node.PROCESS_MODE_DISABLED
+		
 func _on_hurt_flasher_timeout() -> void:
 	sprite.self_modulate = Color.WHITE

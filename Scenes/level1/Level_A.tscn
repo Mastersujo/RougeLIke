@@ -10,6 +10,8 @@ position = Vector2(89, 41)
 
 [node name="EnemyList" type="Node2D" parent="."]
 
+[node name="IdleEnemies" type="Node2D" parent="."]
+
 [node name="Timers" type="Node2D" parent="."]
 
 [node name="EnemySpawner" type="Timer" parent="Timers"]

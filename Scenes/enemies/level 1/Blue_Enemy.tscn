@@ -76,10 +76,12 @@ size = Vector2(14, 24)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tgl8x"]
 size = Vector2(6, 12)
 
-[node name="BlueEnemy" type="CharacterBody2D" groups=["Enemy"]]
+[node name="StaticBody2D" type="StaticBody2D"]
+script = ExtResource("1_crm1t")
+
+[node name="BlueEnemy" type="CharacterBody2D" parent="." groups=["Enemy"]]
 platform_on_leave = 1
 platform_floor_layers = 0
-script = ExtResource("1_crm1t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
@@ -112,6 +114,7 @@ one_shot = true
 [node name="AttackBox" type="Node2D" parent="."]
 
 [node name="PlayerHurt" type="Area2D" parent="AttackBox"]
+position = Vector2(10, 0)
 collision_layer = 0
 collision_mask = 2
 

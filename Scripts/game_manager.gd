@@ -4,6 +4,8 @@ const CAMERA = preload("uid://ck0u4xiq2mfum")
 var player:Node
 var camera:Node
 
+var enemy_spawn_pool:Array
+
 func _ready() -> void:
 	player = PLAYER.instantiate()
 	camera = CAMERA.instantiate()

@@ -65,4 +65,9 @@ sprite_frames = SubResource("SpriteFrames_x3wgy")
 wait_time = 0.75
 autostart = true
 
+[node name="HurtTimer" type="Timer" parent="Timers"]
+wait_time = 0.25
+one_shot = true
+
 [connection signal="timeout" from="Timers/AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="Timers/HurtTimer" to="." method="_on_hurt_timer_timeout"]

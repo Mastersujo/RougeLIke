@@ -3,9 +3,6 @@
 [ext_resource type="Script" uid="uid://48nxsogxpi1f" path="res://animated_sprite_2d.gd" id="1_nym0d"]
 [ext_resource type="Texture2D" uid="uid://qnwi0t8kc4hi" path="res://art/blueenemy.png" id="2_43wyd"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_h1vhg"]
-size = Vector2(14, 24)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_snamw"]
 atlas = ExtResource("2_43wyd")
 region = Rect2(0, 0, 32, 32)
@@ -70,17 +67,52 @@ animations = [{
 "speed": 5.0
 }]
 
+<<<<<<< Updated upstream:Scenes/Blue_Enemy.tscn
+=======
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_crm1t"]
+size = Vector2(14, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tgl8x"]
+size = Vector2(6, 12)
+
+>>>>>>> Stashed changes:Scenes/enemies/level 1/Blue_Enemy.tscn
 [node name="BlueEnemy" type="CharacterBody2D" groups=["Enemy"]]
 platform_on_leave = 1
 platform_floor_layers = 0
 script = ExtResource("1_nym0d")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1)
-scale = Vector2(1, 0.9684383)
-shape = SubResource("RectangleShape2D_h1vhg")
-one_way_collision_margin = 8.5
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_pff8j")
 animation = &"Walk"
+<<<<<<< Updated upstream:Scenes/Blue_Enemy.tscn
+=======
+autoplay = "Walk"
+
+[node name="Body" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_crm1t")
+
+[node name="Timers" type="Node2D" parent="."]
+
+[node name="HurtFlasher" type="Timer" parent="Timers"]
+wait_time = 0.25
+one_shot = true
+
+[node name="AttackCD" type="Timer" parent="Timers"]
+one_shot = true
+
+[node name="AttackBox" type="Node2D" parent="."]
+
+[node name="PlayerHurt" type="Area2D" parent="AttackBox"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackBox/PlayerHurt"]
+shape = SubResource("RectangleShape2D_tgl8x")
+
+[connection signal="timeout" from="Timers/HurtFlasher" to="." method="_on_hurt_flasher_timeout"]
+>>>>>>> Stashed changes:Scenes/enemies/level 1/Blue_Enemy.tscn

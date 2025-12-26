@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=4 format=3 uid="uid://ckudr8chj1kgo"]
 
 [ext_resource type="Script" uid="uid://dc2tyapas16kr" path="res://Scripts/player.gd" id="1_cvnsp"]
@@ -5,6 +6,18 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hqtel"]
 
+=======
+[gd_scene load_steps=6 format=3 uid="uid://ckudr8chj1kgo"]
+
+[ext_resource type="Script" uid="uid://dc2tyapas16kr" path="res://Scripts/player.gd" id="1_cvnsp"]
+[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="2_6t5aa"]
+[ext_resource type="PackedScene" uid="uid://0j0ska2ssdfn" path="res://Scenes/weapons/sword.tscn" id="3_6t5aa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hqtel"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
+
+>>>>>>> Stashed changes
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 platform_on_leave = 1
 platform_floor_layers = 0
@@ -16,3 +29,31 @@ shape = SubResource("RectangleShape2D_hqtel")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.15698828, 0.15698828)
 texture = ExtResource("2_6t5aa")
+<<<<<<< Updated upstream
+=======
+
+[node name="Body" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
+shape = SubResource("RectangleShape2D_cvnsp")
+
+[node name="Weapon" type="Node2D" parent="."]
+
+[node name="Sword" parent="Weapon" instance=ExtResource("3_6t5aa")]
+position = Vector2(27, 0)
+
+[node name="Timers" type="Node2D" parent="."]
+
+[node name="AttackTimer" type="Timer" parent="Timers"]
+wait_time = 0.75
+autostart = true
+
+[node name="HurtTimer" type="Timer" parent="Timers"]
+wait_time = 0.25
+one_shot = true
+
+[connection signal="timeout" from="Timers/AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="Timers/HurtTimer" to="." method="_on_hurt_timer_timeout"]
+>>>>>>> Stashed changes

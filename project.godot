@@ -20,6 +20,14 @@ config/icon="res://icon.svg"
 Singleton="*res://Scripts/Singleton.gd"
 GM="*res://Scripts/game_manager.gd"
 
+<<<<<<< HEAD
+=======
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
+>>>>>>> parent of 17299b3 (Merge branch 'integrate-sujo' into SujoSanct)
 [global_group]
 
 Player=""

@@ -1,3 +1,9 @@
-[gd_scene format=3 uid="uid://ck0u4xiq2mfum"]
+[gd_scene load_steps=2 format=3 uid="uid://ck0u4xiq2mfum"]
+
+[ext_resource type="Script" uid="uid://gvh0soltllss" path="res://Scenes/camera.gd" id="1_f1cf7"]
 
 [node name="Camera2D" type="Camera2D"]
+<<<<<<< HEAD
+=======
+script = ExtResource("1_f1cf7")
+>>>>>>> parent of 17299b3 (Merge branch 'integrate-sujo' into SujoSanct)

@@ -1,15 +1,16 @@
 extends CharacterBody2D
 var health:int = 0
 var max_health:int = 10
-@export var PlayerSpeed:float = 3400.0
-@onready var weapon: Node2D = $Weapon
-var weapon_damage = 50
-var base_crit_chance:int = 50
-var max_crit_chance:int = 1000
+@export var PlayerSpeed:float = 3500.0
 var rng:RandomNumberGenerator = RandomNumberGenerator.new()
-@onready var attack_timer: Timer = $Timers/AttackTimer
 @onready var hurt_timer: Timer = $Timers/HurtTimer
 @onready var sprite: Sprite2D = $Sprite2D
+
+@onready var weapon: Node2D = $Weapon
+var weapon_damage = 50##needs updated after some weapons are made
+@onready var attack_timer: Timer = $Timers/AttackTimer
+var base_crit_chance:int = 50
+var max_crit_chance:int = 1000
 
 func _ready() -> void:
 	add_to_group("Player")
@@ -25,7 +26,7 @@ func get_input(delta):
 	velocity = (input_direction * (PlayerSpeed + GM.player_stats["speed"])) * delta
 	
 func rotate_weapon():
-	weapon.look_at((get_global_mouse_position()))
+	weapon.look_at(get_global_mouse_position())
 
 func damaged(damage):
 	var crit_chance = rng.randi_range(0, max_crit_chance)
@@ -37,8 +38,8 @@ func damaged(damage):
 			health -= (damage * GM.player_stats["crit_damage"])
 		health -= damage
 		if health <= 0:
-			print("dead")
 			visible = false
+			process_mode = Node.PROCESS_MODE_DISABLED
 		GM.ui_controller.update_health()
 
 func _on_attack_timer_timeout() -> void:

@@ -8,7 +8,7 @@ var rng:RandomNumberGenerator = RandomNumberGenerator.new()
 var enemy_directory_level1:String = "res://Scenes/enemies/level 1/"##level 2 would have harder sets. can pull from both or 1
 var enemy_list:Array = [] ##list of enemy scenes to shuffle
 var enemies_in_scene:int = 15##number of enemies on screen, increase this and enemy total for more madness
-var enemys_per_level:int = 100##total number of enemies in level, can just decrease this each time an enemy is spawned
+var enemys_per_level:int = 50##total number of enemies in level, can just decrease this each time an enemy is spawned
 
 func _ready() -> void:
 	GM.spawn_player(self, player_spawn_position.position)
@@ -20,7 +20,6 @@ func on_exit_scene():## must do this first before changing scene
 	remove_child(GM.camera)
 	
 func spawn_enemy():##checks if can spawn, then shuffles spawn list and spawns till it hits the cap
-	print(node_containing_enemies.get_child_count(), "<", enemies_in_scene)
 	if node_containing_enemies.get_child_count() < enemies_in_scene and enemies_in_scene < enemys_per_level:
 		var spawn_number = enemies_in_scene - node_containing_enemies.get_child_count()
 		for e in spawn_number:
@@ -33,7 +32,6 @@ func spawn_enemy():##checks if can spawn, then shuffles spawn list and spawns ti
 					var spawned_enemy = load("res://Scenes/enemies/level 1/" + enemy_list[0])
 					var enemy  = spawned_enemy.instantiate()
 					enemy.self_name = enemy_list[0]
-					
 					enemy.position = spawn_location
 					node_containing_enemies.add_child(enemy)
 					enemys_per_level -= 1
@@ -56,6 +54,10 @@ func get_spawn_position():##returns a spawn position. if null doesnt spawn
 	if abs(spawn_location - GM.player.global_position) > Vector2(100,100):
 		return spawn_location
 
+func complete_level():
+	if node_containing_enemies.get_child_count() == 0:
+		print("level complete")
+
 func get_enemy_list():##gives a count of files in directory, next rng from 0-size
 	var dir = DirAccess.open(enemy_directory_level1)
 	if dir == null:
@@ -70,5 +72,4 @@ func get_enemy_list():##gives a count of files in directory, next rng from 0-siz
 	dir.list_dir_end()
 	
 func _on_enemy_spawner_timeout() -> void:##spawns enemies to enemies_in_scene
-	print("spawn timeout")
 	spawn_enemy()

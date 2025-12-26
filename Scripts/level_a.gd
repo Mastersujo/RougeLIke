@@ -1,10 +1,10 @@
 extends Node2D
 @onready var player_spawn_position: Marker2D = $SpawnPosition
+var rng:RandomNumberGenerator = RandomNumberGenerator.new()
 
 @onready var node_containing_enemies: Node2D = $EnemyList##put enemies here to count them
 @onready var enemy_spawner: Timer = $Timers/EnemySpawner##spawn enemies on timeout
 @onready var idle_enemies: Node2D = $IdleEnemies##where we place entites that have been killed and added to the spawn pool
-var rng:RandomNumberGenerator = RandomNumberGenerator.new()
 var enemy_directory_level1:String = "res://Scenes/enemies/level 1/"##level 2 would have harder sets. can pull from both or 1
 var enemy_list:Array = [] ##list of enemy scenes to shuffle
 var enemies_in_scene:int = 15##number of enemies on screen, increase this and enemy total for more madness
@@ -29,10 +29,7 @@ func spawn_enemy():##checks if can spawn, then shuffles spawn list and spawns ti
 			enemy_list.shuffle()
 			var spawn_location = get_spawn_position()
 			if spawn_location != null:
-				print(enemy_list[0], "  enemy name")
-				print(GM.enemy_spawn_pool)
 				if GM.enemy_spawn_pool.is_empty():
-					print("new")
 					var spawned_enemy = load("res://Scenes/enemies/level 1/" + enemy_list[0])
 					var enemy  = spawned_enemy.instantiate()
 					enemy.self_name = enemy_list[0]
@@ -42,8 +39,6 @@ func spawn_enemy():##checks if can spawn, then shuffles spawn list and spawns ti
 					enemys_per_level -= 1
 					
 				else:
-					print("else")
-					
 					var enemy_pull = GM.enemy_spawn_pool[0]
 					enemy_pull.reparent(get_tree().current_scene.node_containing_enemies)
 					enemy_pull.position = spawn_location

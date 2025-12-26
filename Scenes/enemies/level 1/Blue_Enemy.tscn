@@ -1,10 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://wwgshqeenkyn"]
+[gd_scene load_steps=14 format=3 uid="uid://wwgshqeenkyn"]
 
 [ext_resource type="Script" uid="uid://48nxsogxpi1f" path="res://animated_sprite_2d.gd" id="1_crm1t"]
 [ext_resource type="Texture2D" uid="uid://qnwi0t8kc4hi" path="res://art/blueenemy.png" id="2_tgl8x"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_h1vhg"]
-size = Vector2(14, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_snamw"]
 atlas = ExtResource("2_tgl8x")
@@ -83,12 +80,6 @@ script = ExtResource("1_crm1t")
 platform_on_leave = 1
 platform_floor_layers = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1)
-scale = Vector2(1, 0.9684383)
-shape = SubResource("RectangleShape2D_h1vhg")
-one_way_collision_margin = 8.5
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_pff8j")
 animation = &"Walk"
@@ -108,6 +99,10 @@ shape = SubResource("RectangleShape2D_crm1t")
 wait_time = 0.25
 one_shot = true
 
+[node name="HitStart" type="Timer" parent="Timers"]
+wait_time = 0.5
+one_shot = true
+
 [node name="AttackCD" type="Timer" parent="Timers"]
 one_shot = true
 
@@ -122,3 +117,4 @@ collision_mask = 2
 shape = SubResource("RectangleShape2D_tgl8x")
 
 [connection signal="timeout" from="Timers/HurtFlasher" to="." method="_on_hurt_flasher_timeout"]
+[connection signal="timeout" from="Timers/HitStart" to="." method="_on_hit_start_timeout"]

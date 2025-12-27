@@ -1,9 +1,10 @@
+Node2D
+Marker2D
+Timer
+CharacterBody2D
 TileMapLayer
 TileMap
 Camera2D
-Timer
 CollisionShape2D
 Area2D
-Node2D
 AnimatedSprite2D
-Marker2D

@@ -1,0 +1,5 @@
+res://Scenes/player.tscn
+res://Scripts/level_a.gd
+res://Scripts/game_manager.gd
+res://Scenes/level1/Level_A.tscn
+res://animated_sprite_2d.gd

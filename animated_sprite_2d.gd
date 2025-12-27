@@ -7,24 +7,9 @@ var attack_damage:int = 1
 @onready var attack_cd: Timer = $Timers/AttackCD
 
 var health = 100
-
+var speed = 35.0
 @onready var hurt_flasher: Timer = $Timers/HurtFlasher
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-<<<<<<< Updated upstream
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-func _physics_process(_delta: float) -> void:
-	move_and_slide()  # Move character with collision detection
-=======
-	add_to_group("Enemy")
-	
 func _physics_process(delta: float) -> void:
 	attacking()
 	facing_dir()
@@ -70,4 +55,3 @@ func damaged(damage):
 
 func _on_hurt_flasher_timeout() -> void:
 	sprite.self_modulate = Color.WHITE
->>>>>>> Stashed changes

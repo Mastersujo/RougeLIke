@@ -128,7 +128,7 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAEAAMAAAAAAAEAAAADAAQAAAAAAAIAAAADAAQ
 tile_set = SubResource("TileSet_6d5nm")
 
 [node name="SpawnPosition" type="Marker2D" parent="."]
-position = Vector2(559, 310)
+position = Vector2(634, 351)
 
 [node name="EnemyList" type="Node2D" parent="."]
 
@@ -137,5 +137,7 @@ position = Vector2(559, 310)
 [node name="EnemySpawner" type="Timer" parent="Timers"]
 wait_time = 3.0
 autostart = true
+
+[node name="IdleEnemies" type="Node2D" parent="."]
 
 [connection signal="timeout" from="Timers/EnemySpawner" to="." method="_on_enemy_spawner_timeout"]

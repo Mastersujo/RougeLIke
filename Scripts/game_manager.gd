@@ -6,7 +6,9 @@ var player:Node
 var camera:Node
 var ui_controller:Node
 
-func _ready() -> void:
+var enemy_spawn_pool:Array = []
+
+func _init() -> void:
 	player = PLAYER.instantiate()
 	camera = CAMERA.instantiate()
 	ui_controller = UI.instantiate()

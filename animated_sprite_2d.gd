@@ -8,14 +8,17 @@ var attack_damage:int = 1
 
 var health = 100
 var speed = 35.0
+var self_name:String
 @onready var hurt_flasher: Timer = $Timers/HurtFlasher
+
+func _ready() -> void:
+	add_to_group("Enemy")
 
 func _physics_process(delta: float) -> void:
 	attacking()
 	facing_dir()
 	mover(delta)
 	move_and_slide()  # Move character with collision detection
-
 	
 func mover(delta):
 	global_position.x = move_toward(global_position.x, GM.player.global_position.x, speed * delta)
@@ -41,8 +44,10 @@ func facing_dir():##controls attack box facing and sprite facing
 func attacking():
 	if attack_cd.is_stopped():
 		for t in player_hurt.get_overlapping_areas():
-			var target = t.get_parent()
+			print(t.get_parent())
+			var target = t.get_parent().get_parent()
 			if target.is_in_group("Player"):
+				print("thru")
 				target.damaged(attack_damage)
 				attack_cd.start()
 
